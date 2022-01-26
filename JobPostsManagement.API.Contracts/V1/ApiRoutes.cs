@@ -30,5 +30,13 @@
             public const string Update = Prefix + "/jobPosts/{jobPostId}";
             public const string Delete = Prefix + "/jobPosts/{jobPostId}";
         }
+        public static class JobApplicationsRoutes
+        {
+            public const string GetAll = Prefix + "/jobApplications";
+            public const string Create = Prefix + "/jobApplications";
+            public const string GetById = Prefix + "/jobApplications/{jobApplicationId}";
+            public const string Update = Prefix + "/jobApplications/{jobApplicationId}";
+            public const string Delete = Prefix + "/jobApplications/{jobApplicationId}";
+        }
     }
 }

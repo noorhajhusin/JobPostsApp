@@ -10,5 +10,6 @@ namespace JobPostsManagement.API.Interfaces
     {
         Uri GetPageUri(string endpoint, int pageNumber, int pageSize);
         Uri GetJobPostUri(JobPost jobPost);
+        Uri GetJobApplicationUri(JobApplication jobApplication);
     }
 }

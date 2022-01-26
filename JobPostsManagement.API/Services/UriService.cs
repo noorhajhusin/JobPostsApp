@@ -35,5 +35,9 @@ namespace JobPostsManagement.API.Services
         {
             return new Uri(baseUri + "/" + ApiRoutes.JobPostsRoutes.GetById.Replace("{jobPostId}", jobPost.Id.ToString()));
         }
+        public Uri GetJobApplicationUri(JobApplication jobApplication)
+        {
+            return new Uri(baseUri + "/" + ApiRoutes.JobApplicationsRoutes.GetById.Replace("{jobApplicationId}", jobApplication.Id.ToString()));
+        }
     }
 }

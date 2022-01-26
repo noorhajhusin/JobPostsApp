@@ -53,6 +53,10 @@ namespace JobPostsManagement.API.Controllers.V1
             {
                 return BadRequest();
             }
+            if (request.Password != request.ConfirmPassword)
+            {
+                return BadRequest(new ErrorResponse { Code = "PasswordsNotMatched" });
+            }
 
             var createdEmployer = mapper.Map<Models.Employer>(request);
 
@@ -83,7 +87,7 @@ namespace JobPostsManagement.API.Controllers.V1
         [HttpPost(ApiRoutes.IdentityRoutes.Login)]
         [ProducesResponseType(typeof(AuthSuccessResponse), 200)]
         [ProducesResponseType(typeof(ErrorResponse), 400)]
-        public async Task<IActionResult> Login([FromForm] UserLoginRequest request)
+        public async Task<IActionResult> Login([FromBody] UserLoginRequest request)
         {
             var authResponse = await identityService.LoginAsync(request.Email, request.Password);
 
