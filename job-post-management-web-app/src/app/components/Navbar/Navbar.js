@@ -49,7 +49,6 @@ const AppNavbar = (props) => {
                       alt="..."
                       src={
                         require("../../../assets/img/theme/team-4-800x800.jpg")
-                          .default
                       }
                     />
                   </span>

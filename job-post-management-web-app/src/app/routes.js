@@ -1,25 +1,24 @@
+import Dashboard from "./pages/Dashboard";
+import Jobs from "./pages/Jobs";
 
 var routes = [
   {
-    path: "/index",
+    path: "/home/dashboard",
     name: "Dashboard",
     icon: "ni ni-tv-2 text-primary",
-    // component: Index,
-    layout: "/admin",
+    component: Dashboard,
   },
   {
-    path: "/icons",
-    name: "Icons",
+    path: "/home/jobs",
+    name: "Jobs",
     icon: "ni ni-planet text-blue",
-    // component: Icons,
-    layout: "/admin",
+    component: Jobs,
   },
   {
-    path: "/user-profile",
+    path: "/home/profile",
     name: "User Profile",
     icon: "ni ni-single-02 text-yellow",
     // component: Profile,
-    layout: "/admin",
   }
 ];
 export default routes;

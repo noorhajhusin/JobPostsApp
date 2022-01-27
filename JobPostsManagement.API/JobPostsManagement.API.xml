@@ -1,0 +1,102 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>JobPostsManagement.API</name>
+    </assembly>
+    <members>
+        <member name="M:JobPostsManagement.API.Controllers.V1.IdentityController.Refresh(JobPostsManagement.API.Contracts.V1.Requests.RefreshTokenRequest)">
+             <summary>
+             Refresh the Jwt Token to renew the expiry date of the session
+             </summary>
+             <response code="200">The Refresh token is valid and has been regenerated.</response>
+             <response code="400">Failed to generate the new Jwt token</response>
+            <returns>The new Jwt Token, and the new RefreshToken.</returns>
+        </member>
+        <member name="M:JobPostsManagement.API.Controllers.V1.IdentityController.CheckIfAuthorized">
+            <summary>
+            Check if the user is Authorized
+            </summary>
+            <response code="200">The User is Authorized</response>
+        </member>
+        <member name="M:JobPostsManagement.API.Controllers.V1.JobApplicationsController.GetAll(System.Nullable{System.Int32},System.Nullable{System.Int32})">
+            <summary>
+            Get all jobApplications and its informations.
+            </summary>
+            <response code="200">Returns list of jobApplicationResponse</response>
+        </member>
+        <member name="M:JobPostsManagement.API.Controllers.V1.JobApplicationsController.Get(System.Int64)">
+            <summary>
+            Get specified jobApplication by given jobApplicationId
+            </summary>
+            <param name="jobApplicationId">Id of the jobApplication to find</param>
+            <response code="200">JobApplication object has found.</response>
+            <response code="404">JobApplication object has not found, Id is incorrect.</response>
+            <returns></returns>
+        </member>
+        <member name="M:JobPostsManagement.API.Controllers.V1.JobApplicationsController.Create(JobPostsManagement.API.Contracts.V1.Requests.CreateUpdateJobApplicationRequest)">
+            <summary>
+            Create new jobApplication
+            </summary>
+            <response code="201">JobApplication object has created successfully.</response>
+            <response code="400">JobApplication object has not created.</response>
+        </member>
+        <member name="M:JobPostsManagement.API.Controllers.V1.JobApplicationsController.Update(System.Int64,JobPostsManagement.API.Contracts.V1.Requests.CreateUpdateJobApplicationRequest)">
+            <summary>
+            Update the jobApplication speciefied by given Id with new values.
+            </summary>
+            <param name="jobApplicationId">Id of the jobApplication to find</param>
+            <response code="200">JobApplication object has updated successfully.</response>
+            <response code="400">JobApplication object has not updated.</response>
+            <response code="404">JobApplication object has not found, Id is incorrect.</response>
+        </member>
+        <member name="M:JobPostsManagement.API.Controllers.V1.JobApplicationsController.Delete(System.Int64)">
+            <summary>
+            Delete the jobApplication speciefied by given Id.
+            </summary>
+            <param name="jobApplicationId">Id of the jobApplication to find</param>
+            <response code="204">JobApplication object has deleted successfully.</response>
+            <response code="400">JobApplication object has not deleted.</response>
+            <response code="404">JobApplication object has not found, Id is incorrect.</response>
+        </member>
+        <member name="M:JobPostsManagement.API.Controllers.V1.JobPostsController.GetAll(System.Nullable{System.Int32},System.Nullable{System.Int32})">
+            <summary>
+            Get all jobposts and its informations.
+            </summary>
+            <response code="200">Returns list of jobpostResponse</response>
+        </member>
+        <member name="M:JobPostsManagement.API.Controllers.V1.JobPostsController.Get(System.Int64)">
+            <summary>
+            Get specified jobpost by given jobpostId
+            </summary>
+            <param name="jobpostId">Id of the jobpost to find</param>
+            <response code="200">JobPost object has found.</response>
+            <response code="404">JobPost object has not found, Id is incorrect.</response>
+            <returns></returns>
+        </member>
+        <member name="M:JobPostsManagement.API.Controllers.V1.JobPostsController.Create(JobPostsManagement.API.Contracts.V1.Requests.CreateUpdateJobPostRequest)">
+            <summary>
+            Create new jobpost
+            </summary>
+            <response code="201">JobPost object has created successfully.</response>
+            <response code="400">JobPost object has not created.</response>
+        </member>
+        <member name="M:JobPostsManagement.API.Controllers.V1.JobPostsController.Update(System.Int64,JobPostsManagement.API.Contracts.V1.Requests.CreateUpdateJobPostRequest)">
+            <summary>
+            Update the jobpost speciefied by given Id with new values.
+            </summary>
+            <param name="jobpostId">Id of the jobpost to find</param>
+            <response code="200">JobPost object has updated successfully.</response>
+            <response code="400">JobPost object has not updated.</response>
+            <response code="404">JobPost object has not found, Id is incorrect.</response>
+        </member>
+        <member name="M:JobPostsManagement.API.Controllers.V1.JobPostsController.Delete(System.Int64)">
+            <summary>
+            Delete the jobpost speciefied by given Id.
+            </summary>
+            <param name="jobpostId">Id of the jobpost to find</param>
+            <response code="204">JobPost object has deleted successfully.</response>
+            <response code="400">JobPost object has not deleted.</response>
+            <response code="404">JobPost object has not found, Id is incorrect.</response>
+        </member>
+    </members>
+</doc>

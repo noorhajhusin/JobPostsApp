@@ -21,6 +21,8 @@ import { login } from "../store/auth/authSlice";
 const Login = () => {
   const dispatch= useDispatch();
   const user = useSelector(({ auth }) => auth.user);
+  const loginFailed = useSelector(({ auth }) => auth.loginFailed);
+  const isLoading = useSelector(({ auth }) => auth.isLoading);
   const history=useHistory();
   useEffect(() => {
   if(user){
@@ -45,8 +47,7 @@ const Login = () => {
               <Col lg="5" md="6">
                 <h1 className="text-white">Welcome!</h1>
                 <p className="text-lead text-light">
-                  Use these awesome forms to login or create new account in your
-                  project for free.
+                  Job posts website
                 </p>
               </Col>
             </Row>
@@ -74,6 +75,9 @@ const Login = () => {
                 <div className="text-center text-muted mb-4">
                   <small>Please enter your credentials to login</small>
                 </div>
+                {loginFailed&&<div className="text-center text-muted mb-4 text-red">
+                  <small>Error in Email or passsword!</small>
+                </div>}
                 <Form role="form" onSubmit={handleSubmit}>
                   <FormGroup className="mb-3">
                     <InputGroup className="input-group-alternative">
@@ -117,7 +121,7 @@ const Login = () => {
                     </label>
                   </div>
                   <div className="text-center">
-                    <Button className="my-4" color="primary" type="submit">
+                    <Button disabled={isLoading} className="my-4" color="primary" type="submit">
                       Sign in
                     </Button>
                   </div>

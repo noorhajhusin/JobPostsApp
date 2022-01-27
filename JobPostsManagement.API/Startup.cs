@@ -59,6 +59,7 @@ namespace JobPostsManagement.API
 
             services.AddScoped<IIdentityService, IdentityService>();
             services.AddScoped<IJobPostService, JobPostService>();
+            services.AddScoped<IJobApplicationService, JobApplicationService>();
             #endregion DB service
 
             #region JWT service

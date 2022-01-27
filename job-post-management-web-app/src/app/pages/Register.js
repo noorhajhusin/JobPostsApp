@@ -1,3 +1,6 @@
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import {
   Button,
   Card,
@@ -13,8 +16,31 @@ import {
   Col,
   Container,
 } from "reactstrap";
+import { register } from "../store/auth/authSlice";
 
 const Register = () => {
+  const dispatch= useDispatch();
+  const user = useSelector(({ auth }) => auth.user);
+  const registerError = useSelector(({ auth }) => auth.registerError);
+  const isLoading = useSelector(({ auth }) => auth.isLoading);
+  const history=useHistory();
+  useEffect(() => {
+  if(user){
+    history.push('/dashboard');
+  }
+  }, [user,history]);
+  
+
+  const handleSubmit=(e)=>{
+    const firstName=e.target[0].value;
+    const lastName=e.target[1].value;
+    const email=e.target[2].value;
+    const password=e.target[3].value;
+    const confirmPassword=e.target[4].value;
+    dispatch(register({firstName,lastName,email,password,confirmPassword}))
+    e.preventDefault();
+  }
+
   return (
     <div className="main-content">
       <div className="header bg-gradient-info py-7 py-lg-8">
@@ -24,8 +50,7 @@ const Register = () => {
               <Col lg="5" md="6">
                 <h1 className="text-white">Welcome!</h1>
                 <p className="text-lead text-light">
-                  Use these awesome forms to login or create new account in your
-                  project for free.
+                  Job posts website
                 </p>
               </Col>
             </Row>
@@ -53,7 +78,10 @@ const Register = () => {
                 <div className="text-center text-muted mb-4">
                   <small>Please enter your information to Sign Up!</small>
                 </div>
-                <Form role="form">
+                {registerError&&<div className="text-center text-muted mb-4 text-red">
+                  <small>Error in Email or passsword!</small>
+                </div>}
+                <Form onSubmit={handleSubmit} role="form">
                   <FormGroup>
                     <InputGroup className="input-group-alternative mb-3">
                       <InputGroupAddon addonType="prepend">
@@ -117,14 +145,47 @@ const Register = () => {
                       />
                     </InputGroup>
                   </FormGroup>
-                  <div className="text-muted font-italic">
-                    <small>
-                      password strength:{" "}
-                      <span className="text-success font-weight-700">
-                        strong
-                      </span>
-                    </small>
-                  </div>
+                  <Row className="my-4">
+                    <Col xs="6">
+                      <div className="custom-control custom-control-alternative custom-radio">
+                        <input
+                          className="custom-control-input"
+                          id="employer"
+                          type="radio"
+                          checked
+                          radioGroup="type" 
+                        />
+                        <label
+                          className="custom-control-label"
+                          htmlFor="employer"
+                        >
+                          <span className="text-muted">
+                            Employer
+                          </span>
+                        </label>
+                      </div>
+                    </Col>
+                    <Col xs="6">
+                      <div className="custom-control custom-control-alternative custom-radio">
+                        <input
+                          className="custom-control-input"
+                          id="candidate"
+                          checked={false}
+                          type="radio"
+                          radioGroup="type" 
+                        />
+                        <label
+                          className="custom-control-label"
+                          htmlFor="candidate"
+                        >
+                          <span className="text-muted">
+                            Job seeker
+                          </span>
+                        </label>
+                      </div>
+                    </Col>
+                  </Row>
+                  <br/>
                   <Row className="my-4">
                     <Col xs="12">
                       <div className="custom-control custom-control-alternative custom-checkbox">
@@ -151,7 +212,7 @@ const Register = () => {
                     </Col>
                   </Row>
                   <div className="text-center">
-                    <Button className="mt-4" color="primary" type="button">
+                    <Button disabled={isLoading} className="mt-4" color="primary" type="submit">
                       Create account
                     </Button>
                   </div>

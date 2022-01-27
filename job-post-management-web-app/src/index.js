@@ -8,7 +8,7 @@ import "./assets/plugins/nucleo/css/nucleo.css";
 import "./assets/scss/argon-dashboard-react.scss";
 
 import store  from "./app/store"
-import Dashboard from "./app/pages/Dashboard.js";
+import Home from "./app/pages/Home.js";
 import Login from "./app/pages/Login.js";
 import Register from "./app/pages/Register.js";
 
@@ -17,10 +17,10 @@ ReactDOM.render(
     <Provider store={store}>
       <BrowserRouter>
         <Switch>
-          <Route path="/dashboard" render={(props) => <Dashboard {...props} />} />
+          <Route path="/home" render={(props) => <Home {...props} />} />
           <Route path="/login" render={(props) => <Login {...props} />} />
           <Route path="/register" render={(props) => <Register {...props} />} />
-          <Redirect from="/" to="/dashboard" />
+          <Redirect from="/" to="/home" />
         </Switch>
       </BrowserRouter>
     </Provider>

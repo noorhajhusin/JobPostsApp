@@ -1,4 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import axios from "axios";
+import { API_BASE_URL } from "../../configs";
 
 const initialState = {
   user: null,
@@ -6,6 +8,19 @@ const initialState = {
   refreshToken: "",
   isLoading: false,
   loginFailed: false,
+  registerError: false,
+};
+
+const setSession = (access_token, refreshToken) => {
+  if (access_token) {
+    localStorage.setItem("jwt_access_token", access_token);
+    localStorage.setItem("refreshToken", refreshToken);
+    axios.defaults.headers.common["Authorization"] = "Bearer " + access_token;
+  } else {
+    localStorage.removeItem("jwt_access_token");
+    localStorage.removeItem("refreshToken");
+    delete axios.defaults.headers.common["Authorization"];
+  }
 };
 
 export const login = createAsyncThunk(
@@ -13,9 +28,43 @@ export const login = createAsyncThunk(
   async ({ email, password }) => {
     console.log(email);
     //TODO: call login endpoint
-    const response = {success:true,user:{ email, password},token:"asdasd" ,refreshToken:"asdasd" };
-    // The value we return becomes the `fulfilled` action payload
-    return response;
+    const req = axios.post(`${API_BASE_URL}/Identity/Login`, {
+      email,
+      password,
+    });
+    return req.then((response) => {
+      if (response.data && response.data.user && response.status === 200) {
+        setSession(response.data.token, response.data.refreshToken);
+        return response.data;
+      }
+    });
+  }
+);
+
+export const register = createAsyncThunk(
+  "auth/register",
+  async ({
+    firstName,
+    lastName,
+    email,
+    password,
+    confirmPassword,
+    type = "Employer",
+  }) => {
+    //TODO: call login endpoint
+    const req = axios.post(`${API_BASE_URL}/Identity/Register${type}`, {
+      firstName,
+      lastName,
+      email,
+      password,
+      confirmPassword,
+    });
+    return req.then((response) => {
+      if (response.data && response.data.user && response.status === 200) {
+        setSession(response.data.token, response.data.refreshToken);
+        return response.data;
+      }
+    });
   }
 );
 
@@ -38,20 +87,45 @@ export const authSlice = createSlice({
       })
       .addCase(login.fulfilled, (state, action) => {
         state.isLoading = false;
-        if (action.payload && action.payload.success) {
+        console.log("action.payload", action);
+        if (action.payload && action.payload.user) {
           state.loginFailed = false;
           state.user = action.payload.user;
-          state.token = action.token;
-          state.refreshToken = action.refreshToken;
+          state.token = action.payload.token;
+          state.refreshToken = action.payload.refreshToken;
         } else {
           state.loginFailed = true;
           //show error notification
         }
+      })
+      .addCase(login.rejected, (state, action) => {
+        state.isLoading = false;
+        state.loginFailed = true;
+      })
+      .addCase(register.pending, (state) => {
+        state.isLoading = true;
+        state.registerError = false;
+      })
+      .addCase(register.fulfilled, (state, action) => {
+        state.isLoading = false;
+        console.log("action.payload", action);
+        if (action.payload && action.payload.user) {
+          state.registerError = false;
+          state.user = action.payload.user;
+          state.token = action.payload.token;
+          state.refreshToken = action.payload.refreshToken;
+        } else {
+          state.registerError = true;
+          //show error notification
+        }
+      })
+      .addCase(register.rejected, (state, action) => {
+        state.registerError = true;
+        state.isLoading = false;
       });
   },
 });
 
 export const { logout } = authSlice.actions;
-
 
 export default authSlice.reducer;
