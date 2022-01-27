@@ -7,6 +7,9 @@ namespace JobPostsManagement.API.Models
     public class Employer : BaseUser
     {
         public virtual ICollection<JobPost> JobPosts { get; set; }
-        public int MyProperty { get; set; }
+        public string CompanyName { get; set; }
+        public string CompanyAddress { get; set; }
+        public string CompanyWebsite { get; set; }
+        public string CompanyPhone { get; set; }
     }
 }

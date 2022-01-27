@@ -1,10 +1,12 @@
-﻿using System;
+﻿using JobPostsManagement.API.Models;
+using System;
 using System.Collections.Generic;
-using System.Text;
+using System.Linq;
+using System.Threading.Tasks;
 
-namespace JobPostsManagement.API.Contracts.V1.Responses
+namespace JobPostsManagement.API.Contracts.V1.Requests
 {
-    public class EmployerResponse: UserResponse
+    public class UpdateEmployerRequest : UpdateUserRequest
     {
         public string CompanyName { get; set; }
         public string CompanyAddress { get; set; }

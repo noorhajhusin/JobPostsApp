@@ -1,15 +1,16 @@
-﻿using System;
+﻿using JobPostsManagement.API.Models;
+using System;
 using System.Collections.Generic;
-using System.Text;
+using System.Linq;
+using System.Threading.Tasks;
 
-namespace JobPostsManagement.API.Models
+namespace JobPostsManagement.API.Contracts.V1.Requests
 {
-    public class Candidate : BaseUser
+    public class UpdateCandidateRequest : UpdateUserRequest
     {
         public string StudyLevel { get; set; }
         public string Skills { get; set; }
         public string Qualifications { get; set; }
         public string Address { get; set; }
-        public virtual ICollection<JobApplication> JobApplications { get; set; }
     }
 }

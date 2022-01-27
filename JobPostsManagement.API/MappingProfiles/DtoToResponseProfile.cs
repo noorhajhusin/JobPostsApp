@@ -9,9 +9,11 @@ namespace JobPostsManagement.API.MappingProfiles
         public DtoToResponseProfile()
         {
             AllowNullCollections = false;
+            CreateMap<Candidate, CandidateResponse>() ;
             CreateMap<Employer, EmployerResponse>() ;
             CreateMap<BaseUser, UserResponse>();
             CreateMap<JobPost, JobPostResponse>();
+            CreateMap<JobApplication, JobApplicationResponse>();
         }
     }
 }

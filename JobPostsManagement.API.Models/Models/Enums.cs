@@ -12,4 +12,8 @@ namespace JobPostsManagement.API.Models
     {
         Accepted = 0, InConsideration = 1, Meeting = 2, Declined = 3
     }
+    public enum JobPostStatus
+    {
+        Published = 0, Closed = 1, Inactive = 2, Pending = 2
+    }
 }

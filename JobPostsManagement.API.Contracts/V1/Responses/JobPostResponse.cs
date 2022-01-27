@@ -1,4 +1,5 @@
-﻿using System;
+﻿using JobPostsManagement.API.Models;
+using System;
 
 namespace JobPostsManagement.API.Contracts.V1.Responses
 {
@@ -8,7 +9,9 @@ namespace JobPostsManagement.API.Contracts.V1.Responses
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
         public DateTime DeadLineDate { get; set; }
-
+        public string Address { get; set; }
+        public JobPostStatus Status { get; set; }
+        public int Views { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
         public string EmployerId { get; set; }

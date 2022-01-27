@@ -12,8 +12,19 @@ namespace JobPostsManagement.API.MappingProfiles
             AllowNullCollections = false;
             CreateMap<CreateUpdateJobPostRequest, JobPost>()
                 .ForMember(dest => dest.Id, opt => opt.UseDestinationValue());
+            CreateMap<CreateUpdateJobApplicationRequest, JobApplication>()
+                .ForMember(dest => dest.Id, opt => opt.UseDestinationValue());
 
-            CreateMap<RegisterEmployerRequest, Employer>();
+            CreateMap<RegisterEmployerRequest, Employer>()
+                .ForMember(dest => dest.Id, opt => opt.UseDestinationValue());
+            CreateMap<UpdateEmployerRequest, Employer>()
+                .ForMember(dest => dest.Id, opt => opt.UseDestinationValue());
+            CreateMap<UpdateCandidateRequest, Candidate>()
+                .ForMember(dest => dest.Id, opt => opt.UseDestinationValue());
+            CreateMap<UpdateUserRequest, BaseUser>()
+                .ForMember(dest => dest.Id, opt => opt.UseDestinationValue())
+                .ForMember(dest => dest.Email, opt => opt.UseDestinationValue())
+                .ForMember(dest => dest.UserName, opt => opt.UseDestinationValue());
         }
     }
 }
