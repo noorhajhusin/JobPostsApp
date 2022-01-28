@@ -101,8 +101,6 @@ namespace JobPostsManagement.API
             {
                 x.SwaggerDoc("v1", new OpenApiInfo { Title = "Job Posts Api", Version = "v1" });
 
-                x.ExampleFilters();
-
                 x.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
                 {
                     Description = "JWT Authorization header using the bearer scheme",
@@ -147,6 +145,10 @@ namespace JobPostsManagement.API
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+            }
+            else
+            {
+                app.UseHsts();
             }
 
             app.UseHttpsRedirection();
