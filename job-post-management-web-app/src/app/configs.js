@@ -1,1 +1,1 @@
-export const API_BASE_URL="http://62.138.21.15:4588"+"/api/v1";
+export const API_BASE_URL="https://jobpost.somee.com"+"/api/v1";
