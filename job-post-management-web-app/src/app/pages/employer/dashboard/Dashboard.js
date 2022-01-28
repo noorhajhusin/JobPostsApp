@@ -17,7 +17,7 @@ import {
     Row,
     UncontrolledTooltip,
   } from "reactstrap";
-import Header from "../components/Header/Header";
+import Header from "../../../components/Headers/DashboardHeader";
   
   const Dashboard = () => {
     return (

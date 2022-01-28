@@ -36,7 +36,6 @@ import {
 import { logout } from "../../store/auth/authSlice";
 import { useDispatch } from "react-redux";
 
-var ps;
 
 const Sidebar = (props) => {
   const dispatch= useDispatch();
@@ -57,7 +56,7 @@ const Sidebar = (props) => {
   // creates the links that appear in the left menu / Sidebar
   const createLinks = (routes) => {
     return routes.map((prop, key) => {
-      return (
+      if (prop.sidebar)return (
         <NavItem key={key}>
           <NavLink
             to={prop.path}

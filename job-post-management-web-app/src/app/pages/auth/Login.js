@@ -16,7 +16,7 @@ import {
   Col,
   Container,
 } from "reactstrap";
-import { login } from "../store/auth/authSlice";
+import { login } from "../../store/auth/authSlice";
 
 const Login = () => {
   const dispatch= useDispatch();

@@ -3,13 +3,14 @@ import { useLocation, Route, Switch, Redirect } from "react-router-dom";
 // reactstrap components
 import { Button, Container } from "reactstrap";
 // core components
-import AppNavbar from "../components/Navbar/Navbar.js";
-import Sidebar from "../components/Sidebar/Sidebar.js";
+import AppNavbar from "../../components/Navbar/Navbar.js";
+import Sidebar from "../../components/Sidebar/Sidebar.js";
 
-import routes from "../routes.js";
+import routes from "../../routes.js";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
-import { logout } from "../store/auth/authSlice.js";
+import { logout } from "../../store/auth/authSlice.js";
+import CreateJobPost from "./jobs/CreateJobPost.js";
 
 const Home = (props) => {
   const dispatch= useDispatch();
@@ -50,8 +51,7 @@ const Home = (props) => {
         {...props}
         routes={routes}
         logo={{
-          innerLink: "/admin/index",
-          imgSrc: require("../../assets/img/brand/argon-react.png").default,
+          imgSrc: require("../../../assets/img/brand/argon-react.png"),
           imgAlt: "...",
         }}
       />

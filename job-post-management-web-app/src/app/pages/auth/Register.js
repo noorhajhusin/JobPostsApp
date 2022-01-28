@@ -16,7 +16,7 @@ import {
   Col,
   Container,
 } from "reactstrap";
-import { register } from "../store/auth/authSlice";
+import { register } from "../../store/auth/authSlice";
 
 const Register = () => {
   const dispatch= useDispatch();
